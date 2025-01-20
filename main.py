@@ -1,9 +1,10 @@
-from telegram import Bot
 from telegram import Update
 from telegram.ext import CallbackContext, CommandHandler, MessageHandler, Filters
 from telegram.ext import Updater
+import os
 likes = 0
 dislikes = 0
+
 def start(update: Update, context: CallbackContext):
     update.message.reply_text("Assalomu alaykum! \n" 
                               "👍 - Like \n"
@@ -22,13 +23,13 @@ def handle_message(update: Updater, context: CallbackContext):
     else:
         update.message.reply_text("Faqat 👍 yoki 👎 yuboring!")
 def main():
-    TOKEN = "7963935887:AAGAtRooOT5l67tgxyk0BtSC9osHlRUCNa8"  
+    TOKEN = os.getenv("TOKEN")  
     updater = Updater(TOKEN)
 
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, handle_message))
+    dispatcher.add_handler(MessageHandler(Filters.text, handle_message))
 
     updater.start_polling()
     updater.idle()

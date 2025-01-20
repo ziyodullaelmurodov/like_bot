@@ -18,8 +18,6 @@ def handle_message(update: Updater, context: CallbackContext):
     elif update.message.text in "👎👎🏻👎🏼👎🏽👎🏾👎🏿":
         dislikes += 1
         update.message.reply_text(f"💥Like: {likes}\n"f"💣Dislike: {dislikes}")
-    elif update.message.text in "😀😃😄😁😆🥹😅😂🤣":
-        update.message.reply_text(f"Kulmang, faqat 👍 yoki 👎 yuboring!")
     else:
         update.message.reply_text("Faqat 👍 yoki 👎 yuboring!")
 def main():
